@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d3lxy45idxm31"]
+[gd_scene load_steps=13 format=3 uid="uid://d3lxy45idxm31"]
 
 [ext_resource type="PackedScene" uid="uid://26beiv25tcp" path="res://Player/Player.tscn" id="1_07mat"]
 [ext_resource type="PackedScene" uid="uid://5f8wxd3sytm4" path="res://World/Bush.tscn" id="2_17qer"]
@@ -821,6 +821,8 @@ terrain_set_0/terrain_0/name = "Cliff"
 terrain_set_0/terrain_0/color = Color(0.941176, 0.027451, 0.121569, 1)
 sources/0 = SubResource("TileSetAtlasSource_illg8")
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_12qhc"]
+
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 metadata/_edit_lock_ = true
@@ -948,6 +950,9 @@ FRICTION = 50
 SPEED = 400
 MAX_SPEED = 900
 
+[node name="AnimationTree" parent="Player" index="3"]
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_12qhc")
+
 [node name="Bushes" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -962,3 +967,8 @@ position = Vector2(224, 184)
 
 [node name="Bush4" parent="Bushes" instance=ExtResource("2_17qer")]
 position = Vector2(376, 160)
+
+[editable path="Enemies/Bat"]
+[editable path="Enemies/Bat/Hurtbox"]
+[editable path="Player"]
+[editable path="Player/RotationPivot/SwordHitbox"]
