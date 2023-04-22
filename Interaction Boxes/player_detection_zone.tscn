@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbkldojsc83ka"]
+
+[ext_resource type="Script" path="res://Interaction Boxes/PlayerDetectionZone.gd" id="1_orn4m"]
+
+[node name="PlayerDetectionZone" type="Area2D"]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("1_orn4m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+modulate = Color(1, 1, 1, 0.501961)
+debug_color = Color(0.929412, 0.223529, 0.360784, 0.419608)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

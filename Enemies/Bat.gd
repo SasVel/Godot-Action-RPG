@@ -3,15 +3,44 @@ extends CharacterBody2D
 var rng = RandomNumberGenerator.new()
 @onready var stats = $Stats
 @onready var deathEffect = preload("res://Effects/enemy_death_effect.tscn")
+@onready var playerDetectionZone = $PlayerDetectionZone
+@onready var animatedSprite = $AnimatedSprite
+
+@export var SPEED = 300
+@export var ACCELERATION = 180
+
+var state = IDLE
+enum {
+	IDLE,
+	WANDER,
+	CHASE
+}
 
 func _ready():
 	var startFrame = rand_start_frame()
-	var animatedSprite = $AnimatedSprite
 	animatedSprite.set_frame(startFrame)
 	
 func _physics_process(delta):
 	velocity = velocity.move_toward(Vector2.ZERO, 300 * delta)
+	
+	match state:
+		IDLE:
+			if playerDetectionZone.player_detected():
+				state = CHASE
+		WANDER:
+			pass
+		CHASE:
+			var player = playerDetectionZone.player
+			if player != null:
+				var directionToPlayer = (player.global_position - global_position).normalized()
+				velocity = velocity.move_toward(directionToPlayer * SPEED, ACCELERATION * delta * 2)
+				animatedSprite.flip_h = directionToPlayer.x < 0
+			else:
+				state = IDLE
+	
 	move_and_slide()
+
+
 
 func rand_start_frame():
 	return rng.randi_range(0, 4)

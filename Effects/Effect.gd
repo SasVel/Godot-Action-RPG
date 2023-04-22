@@ -6,5 +6,4 @@ func _ready():
 	self.play("Animate")
 
 func _on_animation_finished():
-	print("Test")
 	queue_free()
