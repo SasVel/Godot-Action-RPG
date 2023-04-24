@@ -17,6 +17,7 @@ var state = MOVE
 @onready var animationState = animationTree.get("parameters/playback")
 @onready var lastDirection = Vector2(1, 0)
 @onready var swordHitbox = $RotationPivot/SwordHitbox
+@onready var stats = $Stats
 
 func move_state(delta):
 	var input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -79,3 +80,12 @@ func _physics_process(delta):
 			attack_state(delta)
 	move_and_slide()
 	
+
+func _on_hurtbox_area_entered(area):
+	stats.health -= area.damage
+	
+	var enemy = area.get_parent()
+	enemy.velocity = (enemy.directionToPlayer * -1) * 180
+
+func _on_stats_no_health():
+	queue_free()
