@@ -7,8 +7,9 @@ var rng = RandomNumberGenerator.new()
 @onready var animatedSprite = $AnimatedSprite
 
 @export var SPEED = 300
-@export var ACCELERATION = 180
+@export var ACCELERATION = 100
 
+var directionToPlayer = Vector2.ZERO
 var state = IDLE
 enum {
 	IDLE,
@@ -32,8 +33,13 @@ func _physics_process(delta):
 		CHASE:
 			var player = playerDetectionZone.player
 			if player != null:
+<<<<<<< HEAD
 				var directionToPlayer = global_position.direction_to(player.global_position)
 				velocity = velocity.move_toward(directionToPlayer * SPEED, ACCELERATION * delta * 2)
+=======
+				directionToPlayer = (player.global_position - global_position).normalized()
+				velocity = velocity.move_toward(directionToPlayer * ACCELERATION, SPEED * delta * 2)
+>>>>>>> dab8a1b29968ed9ca97d36f410549f86390935d1
 				animatedSprite.flip_h = directionToPlayer.x < 0
 			else:
 				state = IDLE
@@ -46,7 +52,7 @@ func rand_start_frame():
 	return rng.randi_range(0, 4)
 	
 func _on_hurtbox_area_entered(area):
-	velocity = area.knockback_vector * 150
+	velocity = area.knockback_vector * 180
 	stats.health -= area.damage
 
 func death_effect():
