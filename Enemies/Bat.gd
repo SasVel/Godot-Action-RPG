@@ -34,9 +34,8 @@ func _physics_process(delta):
 			var player = playerDetectionZone.player
 			if player != null:
 				var directionToPlayer = global_position.direction_to(player.global_position)
-				velocity = velocity.move_toward(directionToPlayer * SPEED, ACCELERATION * delta * 2)
-				directionToPlayer = (player.global_position - global_position).normalized()
 				velocity = velocity.move_toward(directionToPlayer * ACCELERATION, SPEED * delta * 2)
+				
 				animatedSprite.flip_h = directionToPlayer.x < 0
 			else:
 				state = IDLE
