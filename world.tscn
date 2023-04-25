@@ -964,5 +964,8 @@ position = Vector2(224, 184)
 [node name="Bush4" parent="Bushes" instance=ExtResource("2_17qer")]
 position = Vector2(376, 160)
 
-[node name="HealthUI" parent="." instance=ExtResource("8_t48gg")]
+[node name="UI Layer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="HealthUI" parent="UI Layer" instance=ExtResource("8_t48gg")]
 y_sort_enabled = true

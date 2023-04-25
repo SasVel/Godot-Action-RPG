@@ -9,4 +9,3 @@ func set_health(val):
 	if health <= 0:
 		emit_signal("no_health")
 
-

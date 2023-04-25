@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://clf1518kjgswq" path="res://Player/Player.png" id="2_2a8qg"]
 [ext_resource type="PackedScene" uid="uid://b3qw6k7v4xvc1" path="res://Interaction Boxes/Hitbox.tscn" id="3_evlt2"]
 [ext_resource type="Script" path="res://Player/SwordHitbox.gd" id="4_3a6hy"]
-[ext_resource type="PackedScene" uid="uid://bvdbtghrh1n3j" path="res://Stats.tscn" id="5_5vh3d"]
+[ext_resource type="PackedScene" uid="uid://djwfptkeyhlhh" path="res://Player/player_stats.tscn" id="5_iq174"]
 [ext_resource type="PackedScene" uid="uid://mlulwx5wdlng" path="res://Interaction Boxes/Hurtbox.tscn" id="6_odr3m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cujy4"]
@@ -721,8 +721,7 @@ scale = Vector2(3.88, 3.88)
 shape = SubResource("CapsuleShape2D_aaoaq")
 disabled = true
 
-[node name="Stats" parent="." instance=ExtResource("5_5vh3d")]
-max_health = 5
+[node name="PlayerStats" parent="." instance=ExtResource("5_iq174")]
 
 [node name="Hurtbox" parent="." instance=ExtResource("6_odr3m")]
 collision_layer = 2
@@ -732,7 +731,7 @@ collision_mask = 16
 position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_72155")
 
-[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+[connection signal="no_health" from="PlayerStats" to="." method="_on_stats_no_health"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 
 [editable path="RotationPivot/SwordHitbox"]

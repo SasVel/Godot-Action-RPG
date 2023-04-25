@@ -17,7 +17,7 @@ var state = MOVE
 @onready var animationState = animationTree.get("parameters/playback")
 @onready var lastDirection = Vector2(1, 0)
 @onready var swordHitbox = $RotationPivot/SwordHitbox
-@onready var stats = $Stats
+@onready var stats = $PlayerStats
 
 func move_state(delta):
 	var input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
